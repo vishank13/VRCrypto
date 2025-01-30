@@ -6,17 +6,35 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		425BBCF02D4BC1430050D79E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425BBCE92D4BC1430050D79E /* Preview Assets.xcassets */; };
+		425BBCF12D4BC1430050D79E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425BBCEB2D4BC1430050D79E /* Assets.xcassets */; };
+		425BBCF32D4BC1430050D79E /* VRStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBCE52D4BC1430050D79E /* VRStack.swift */; };
+		425BBCF42D4BC1430050D79E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBCEC2D4BC1430050D79E /* HomeView.swift */; };
+		425BBCF52D4BC1430050D79E /* VRCryptoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBCEE2D4BC1430050D79E /* VRCryptoApp.swift */; };
+		425BBCFA2D4BC5A30050D79E /* CoinList.json in Resources */ = {isa = PBXBuildFile; fileRef = 425BBCF92D4BC58D0050D79E /* CoinList.json */; };
+		425BBCFC2D4BC6240050D79E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBCFB2D4BC61D0050D79E /* HomeViewModel.swift */; };
+		425BBCFF2D4BC6B10050D79E /* CoinListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBCFE2D4BC6A20050D79E /* CoinListResponse.swift */; };
+		425BBD052D4BC8500050D79E /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD042D4BC84A0050D79E /* Bundle+Extension.swift */; };
+		425BBD092D4BD2730050D79E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD072D4BD2730050D79E /* ImageCache.swift */; };
+		425BBD0A2D4BD2730050D79E /* CachedImageVew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD062D4BD2730050D79E /* CachedImageVew.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		425BBCC92D4BB63F0050D79E /* VRCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VRCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		425BBCE52D4BC1430050D79E /* VRStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRStack.swift; sourceTree = "<group>"; };
+		425BBCE92D4BC1430050D79E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		425BBCEB2D4BC1430050D79E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		425BBCEC2D4BC1430050D79E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		425BBCED2D4BC1430050D79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		425BBCEE2D4BC1430050D79E /* VRCryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRCryptoApp.swift; sourceTree = "<group>"; };
+		425BBCF92D4BC58D0050D79E /* CoinList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CoinList.json; sourceTree = "<group>"; };
+		425BBCFB2D4BC61D0050D79E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		425BBCFE2D4BC6A20050D79E /* CoinListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListResponse.swift; sourceTree = "<group>"; };
+		425BBD042D4BC84A0050D79E /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		425BBD062D4BD2730050D79E /* CachedImageVew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageVew.swift; sourceTree = "<group>"; };
+		425BBD072D4BD2730050D79E /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		425BBCCB2D4BB63F0050D79E /* VRCrypto */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = VRCrypto;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		425BBCC62D4BB63F0050D79E /* Frameworks */ = {
@@ -32,7 +50,7 @@
 		425BBCC02D4BB63F0050D79E = {
 			isa = PBXGroup;
 			children = (
-				425BBCCB2D4BB63F0050D79E /* VRCrypto */,
+				425BBCEF2D4BC1430050D79E /* VRCrypto */,
 				425BBCCA2D4BB63F0050D79E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +61,113 @@
 				425BBCC92D4BB63F0050D79E /* VRCrypto.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		425BBCE62D4BC1430050D79E /* VRStack */ = {
+			isa = PBXGroup;
+			children = (
+				425BBCE52D4BC1430050D79E /* VRStack.swift */,
+			);
+			path = VRStack;
+			sourceTree = "<group>";
+		};
+		425BBCE72D4BC1430050D79E /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				425BBCE62D4BC1430050D79E /* VRStack */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		425BBCE82D4BC1430050D79E /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				425BBCE72D4BC1430050D79E /* CommonViews */,
+				425BBCF62D4BC1670050D79E /* Home */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		425BBCEA2D4BC1430050D79E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				425BBCE92D4BC1430050D79E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		425BBCEF2D4BC1430050D79E /* VRCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				425BBD002D4BC7EF0050D79E /* Utilities */,
+				425BBCF72D4BC5750050D79E /* NetworkLayer */,
+				425BBCEB2D4BC1430050D79E /* Assets.xcassets */,
+				425BBCED2D4BC1430050D79E /* Info.plist */,
+				425BBCE82D4BC1430050D79E /* PresentationLayer */,
+				425BBCEA2D4BC1430050D79E /* Preview Content */,
+				425BBCEE2D4BC1430050D79E /* VRCryptoApp.swift */,
+			);
+			path = VRCrypto;
+			sourceTree = "<group>";
+		};
+		425BBCF62D4BC1670050D79E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				425BBCEC2D4BC1430050D79E /* HomeView.swift */,
+				425BBCFB2D4BC61D0050D79E /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		425BBCF72D4BC5750050D79E /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				425BBCFD2D4BC68F0050D79E /* Req_Res */,
+				425BBCF82D4BC5820050D79E /* MockJSON */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		425BBCF82D4BC5820050D79E /* MockJSON */ = {
+			isa = PBXGroup;
+			children = (
+				425BBCF92D4BC58D0050D79E /* CoinList.json */,
+			);
+			path = MockJSON;
+			sourceTree = "<group>";
+		};
+		425BBCFD2D4BC68F0050D79E /* Req_Res */ = {
+			isa = PBXGroup;
+			children = (
+				425BBCFE2D4BC6A20050D79E /* CoinListResponse.swift */,
+			);
+			path = Req_Res;
+			sourceTree = "<group>";
+		};
+		425BBD002D4BC7EF0050D79E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				425BBD082D4BD2730050D79E /* ImageCache */,
+				425BBD012D4BC7F60050D79E /* Extension */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		425BBD012D4BC7F60050D79E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				425BBD042D4BC84A0050D79E /* Bundle+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		425BBD082D4BD2730050D79E /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				425BBD062D4BD2730050D79E /* CachedImageVew.swift */,
+				425BBD072D4BD2730050D79E /* ImageCache.swift */,
+			);
+			path = ImageCache;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +184,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				425BBCCB2D4BB63F0050D79E /* VRCrypto */,
 			);
 			name = VRCrypto;
 			packageProductDependencies = (
@@ -109,6 +231,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				425BBCF02D4BC1430050D79E /* Preview Assets.xcassets in Resources */,
+				425BBCF12D4BC1430050D79E /* Assets.xcassets in Resources */,
+				425BBCFA2D4BC5A30050D79E /* CoinList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +244,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				425BBCF32D4BC1430050D79E /* VRStack.swift in Sources */,
+				425BBD092D4BD2730050D79E /* ImageCache.swift in Sources */,
+				425BBD0A2D4BD2730050D79E /* CachedImageVew.swift in Sources */,
+				425BBD052D4BC8500050D79E /* Bundle+Extension.swift in Sources */,
+				425BBCFF2D4BC6B10050D79E /* CoinListResponse.swift in Sources */,
+				425BBCF42D4BC1430050D79E /* HomeView.swift in Sources */,
+				425BBCF52D4BC1430050D79E /* VRCryptoApp.swift in Sources */,
+				425BBCFC2D4BC6240050D79E /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +388,7 @@
 				DEVELOPMENT_TEAM = 7M7M4RG9T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VRCrypto/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "VR Crypto";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -290,6 +424,7 @@
 				DEVELOPMENT_TEAM = 7M7M4RG9T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VRCrypto/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "VR Crypto";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
