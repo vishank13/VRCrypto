@@ -12,8 +12,18 @@ struct VRCryptoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                HomeView()
+            TabView {
+                Tab("Home", systemImage: "list.bullet") {
+                    NavigationStack {
+                        HomeView()
+                    }
+                }
+                
+                Tab("Portfolio", systemImage: "suitcase") {
+                    NavigationStack {
+                        Text("Portfolio")
+                    }
+                }
             }
         }
     }

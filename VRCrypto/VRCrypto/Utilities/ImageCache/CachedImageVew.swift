@@ -25,16 +25,14 @@ struct CachedImageVew: View {
                 .onAppear {
                     self.onSuccess?()
                 }
+        } else if imageLoader.imageFetchFailed {
+            Image(systemName: "photo")
+                .resizable()
+                .onAppear {
+                    self.onSuccess?()
+                }
         } else {
-            if imageLoader.imageFetchFailed {
-                Image(systemName: "photo")
-                    .resizable()
-                    .onAppear {
-                        self.onSuccess?()
-                    }
-            } else {
-                ProgressView()
-            }
+            ProgressView()
         }
     }
 }
@@ -88,7 +86,7 @@ struct AsyncCachedImage<Content: View>: View {
         }
         
         task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
+            guard let data, error == nil else {
                 self.imageFetchFailed = true
                 return
             }

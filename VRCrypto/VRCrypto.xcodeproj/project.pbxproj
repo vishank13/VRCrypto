@@ -22,6 +22,10 @@
 		425BBD102D4BE2E10050D79E /* RoiDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD0F2D4BE2E10050D79E /* RoiDM.swift */; };
 		425BBD122D4BE2EF0050D79E /* SparklineIn7DDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD112D4BE2EF0050D79E /* SparklineIn7DDM.swift */; };
 		425BBD142D4BE49B0050D79E /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD132D4BE4930050D79E /* Double+Extension.swift */; };
+		425BBD172D4CA3240050D79E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD162D4CA3240050D79E /* NetworkManager.swift */; };
+		425BBD182D4CA3240050D79E /* ApiPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD152D4CA3240050D79E /* ApiPaths.swift */; };
+		425BBD1A2D4CA34E0050D79E /* BaseRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD192D4CA34E0050D79E /* BaseRequestProtocol.swift */; };
+		425BBD1C2D4CA6380050D79E /* CoinListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD1B2D4CA6300050D79E /* CoinListRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		425BBD0F2D4BE2E10050D79E /* RoiDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoiDM.swift; sourceTree = "<group>"; };
 		425BBD112D4BE2EF0050D79E /* SparklineIn7DDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparklineIn7DDM.swift; sourceTree = "<group>"; };
 		425BBD132D4BE4930050D79E /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		425BBD152D4CA3240050D79E /* ApiPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPaths.swift; sourceTree = "<group>"; };
+		425BBD162D4CA3240050D79E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		425BBD192D4CA34E0050D79E /* BaseRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestProtocol.swift; sourceTree = "<group>"; };
+		425BBD1B2D4CA6300050D79E /* CoinListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,9 @@
 		425BBCF72D4BC5750050D79E /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
+				425BBD192D4CA34E0050D79E /* BaseRequestProtocol.swift */,
+				425BBD152D4CA3240050D79E /* ApiPaths.swift */,
+				425BBD162D4CA3240050D79E /* NetworkManager.swift */,
 				425BBCFD2D4BC68F0050D79E /* Req_Res */,
 				425BBCF82D4BC5820050D79E /* MockJSON */,
 			);
@@ -149,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				425BBCFE2D4BC6A20050D79E /* CoinListResponse.swift */,
+				425BBD1B2D4CA6300050D79E /* CoinListRequest.swift */,
 			);
 			path = Req_Res;
 			sourceTree = "<group>";
@@ -269,12 +281,16 @@
 				425BBD0A2D4BD2730050D79E /* CachedImageVew.swift in Sources */,
 				425BBD102D4BE2E10050D79E /* RoiDM.swift in Sources */,
 				425BBD052D4BC8500050D79E /* Bundle+Extension.swift in Sources */,
+				425BBD1A2D4CA34E0050D79E /* BaseRequestProtocol.swift in Sources */,
 				425BBCFF2D4BC6B10050D79E /* CoinListResponse.swift in Sources */,
 				425BBD122D4BE2EF0050D79E /* SparklineIn7DDM.swift in Sources */,
 				425BBCF42D4BC1430050D79E /* HomeView.swift in Sources */,
 				425BBD142D4BE49B0050D79E /* Double+Extension.swift in Sources */,
 				425BBCF52D4BC1430050D79E /* VRCryptoApp.swift in Sources */,
 				425BBCFC2D4BC6240050D79E /* HomeViewModel.swift in Sources */,
+				425BBD172D4CA3240050D79E /* NetworkManager.swift in Sources */,
+				425BBD182D4CA3240050D79E /* ApiPaths.swift in Sources */,
+				425BBD1C2D4CA6380050D79E /* CoinListRequest.swift in Sources */,
 				425BBD0E2D4BD8350050D79E /* CoinListDM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
