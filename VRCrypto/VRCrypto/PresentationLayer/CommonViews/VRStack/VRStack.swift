@@ -17,7 +17,7 @@ struct VRStack<Content: View>: View {
     
     var body: some View {
         ZStack {
-            Color(.background).ignoresSafeArea()
+            Color(.vrBackground).ignoresSafeArea()
             
             content
         }

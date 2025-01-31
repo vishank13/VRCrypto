@@ -18,6 +18,10 @@
 		425BBD052D4BC8500050D79E /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD042D4BC84A0050D79E /* Bundle+Extension.swift */; };
 		425BBD092D4BD2730050D79E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD072D4BD2730050D79E /* ImageCache.swift */; };
 		425BBD0A2D4BD2730050D79E /* CachedImageVew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD062D4BD2730050D79E /* CachedImageVew.swift */; };
+		425BBD0E2D4BD8350050D79E /* CoinListDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD0D2D4BD82E0050D79E /* CoinListDM.swift */; };
+		425BBD102D4BE2E10050D79E /* RoiDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD0F2D4BE2E10050D79E /* RoiDM.swift */; };
+		425BBD122D4BE2EF0050D79E /* SparklineIn7DDM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD112D4BE2EF0050D79E /* SparklineIn7DDM.swift */; };
+		425BBD142D4BE49B0050D79E /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBD132D4BE4930050D79E /* Double+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		425BBD042D4BC84A0050D79E /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		425BBD062D4BD2730050D79E /* CachedImageVew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageVew.swift; sourceTree = "<group>"; };
 		425BBD072D4BD2730050D79E /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		425BBD0D2D4BD82E0050D79E /* CoinListDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListDM.swift; sourceTree = "<group>"; };
+		425BBD0F2D4BE2E10050D79E /* RoiDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoiDM.swift; sourceTree = "<group>"; };
+		425BBD112D4BE2EF0050D79E /* SparklineIn7DDM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparklineIn7DDM.swift; sourceTree = "<group>"; };
+		425BBD132D4BE4930050D79E /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +121,7 @@
 		425BBCF62D4BC1670050D79E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				425BBD0C2D4BD8230050D79E /* DomainModel */,
 				425BBCEC2D4BC1430050D79E /* HomeView.swift */,
 				425BBCFB2D4BC61D0050D79E /* HomeViewModel.swift */,
 			);
@@ -156,6 +165,7 @@
 		425BBD012D4BC7F60050D79E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				425BBD132D4BE4930050D79E /* Double+Extension.swift */,
 				425BBD042D4BC84A0050D79E /* Bundle+Extension.swift */,
 			);
 			path = Extension;
@@ -168,6 +178,16 @@
 				425BBD072D4BD2730050D79E /* ImageCache.swift */,
 			);
 			path = ImageCache;
+			sourceTree = "<group>";
+		};
+		425BBD0C2D4BD8230050D79E /* DomainModel */ = {
+			isa = PBXGroup;
+			children = (
+				425BBD0D2D4BD82E0050D79E /* CoinListDM.swift */,
+				425BBD0F2D4BE2E10050D79E /* RoiDM.swift */,
+				425BBD112D4BE2EF0050D79E /* SparklineIn7DDM.swift */,
+			);
+			path = DomainModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,11 +267,15 @@
 				425BBCF32D4BC1430050D79E /* VRStack.swift in Sources */,
 				425BBD092D4BD2730050D79E /* ImageCache.swift in Sources */,
 				425BBD0A2D4BD2730050D79E /* CachedImageVew.swift in Sources */,
+				425BBD102D4BE2E10050D79E /* RoiDM.swift in Sources */,
 				425BBD052D4BC8500050D79E /* Bundle+Extension.swift in Sources */,
 				425BBCFF2D4BC6B10050D79E /* CoinListResponse.swift in Sources */,
+				425BBD122D4BE2EF0050D79E /* SparklineIn7DDM.swift in Sources */,
 				425BBCF42D4BC1430050D79E /* HomeView.swift in Sources */,
+				425BBD142D4BE49B0050D79E /* Double+Extension.swift in Sources */,
 				425BBCF52D4BC1430050D79E /* VRCryptoApp.swift in Sources */,
 				425BBCFC2D4BC6240050D79E /* HomeViewModel.swift in Sources */,
+				425BBD0E2D4BD8350050D79E /* CoinListDM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

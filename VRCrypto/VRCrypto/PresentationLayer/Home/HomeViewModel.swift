@@ -10,14 +10,15 @@ import SwiftUI
 @Observable
 class HomeViewModel {
     
-    var coinList: [CoinListResponse] = []
+    var coinListDM: [CoinListDM] = []
     
     init() {
         fetchCoinList()
     }
     
     func fetchCoinList() {
-        coinList = Bundle.main.decode([CoinListResponse].self,
+        let coinListRes = Bundle.main.decode([CoinListResponse].self,
                                       from: "CoinList.json")
+        coinListDM = coinListRes.compactMap(CoinListDM.init)
     }
 }
