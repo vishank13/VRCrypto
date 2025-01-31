@@ -13,6 +13,7 @@ struct HomeView: View {
     @State var priceChangeDesc: Bool = true
     @State var priceDesc: Bool = true
     @State var showInfoSheet: Bool = false
+    @State var showSort: Bool = false
     
     var body: some View {
         VRStack(showLoader: $viewModel.showLoader) {
@@ -88,70 +89,79 @@ struct HomeView: View {
                     .contentMargins(.bottom, 40, for: .scrollContent)
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
+                    .onScrollPhaseChange({ old, new in
+                        if new == .idle {
+                            showSort = true
+                        } else {
+                            showSort = false
+                        }
+                    })
                     .overlay(alignment: .bottomLeading) {
-                        HStack {
-                            Button {
-                                if !viewModel.sortByPriceChange {
-                                    priceDesc.toggle()
-                                }
-                                viewModel.handlePrice(desc: priceDesc)
-                            } label : {
-                                HStack {
-                                    Text("Price")
+                        if showSort {
+                            HStack {
+                                Button {
+                                    if !viewModel.sortByPriceChange {
+                                        priceDesc.toggle()
+                                    }
+                                    viewModel.handlePrice(desc: priceDesc)
+                                } label : {
+                                    HStack {
+                                        Text("Price")
+                                        
+                                        Image(systemName: "arrow.up")
+                                            .rotationEffect(Angle(degrees: priceDesc ? 0 : 180))
+                                    }
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(viewModel.sortByPrice ?  Color.accentColor : Color.secondary)
                                     
-                                    Image(systemName: "arrow.up")
-                                        .rotationEffect(Angle(degrees: priceDesc ? 0 : 180))
                                 }
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(viewModel.sortByPrice ?  Color.accentColor : Color.secondary)
                                 
-                            }
-                            
-                            Rectangle()
-                                .frame(width: 1)
-                                .foregroundStyle(Color.accentColor)
-                            
-                            Button {
-                                if !viewModel.sortByPrice {
-                                    priceChangeDesc.toggle()
-                                }
-                                viewModel.handlePriceChange(desc: priceChangeDesc)
-                            } label : {
-                                HStack {
-                                    Text("Price Change")
+                                Rectangle()
+                                    .frame(width: 1, height: 15)
+                                    .foregroundStyle(Color.accentColor)
+                                
+                                Button {
+                                    if !viewModel.sortByPrice {
+                                        priceChangeDesc.toggle()
+                                    }
+                                    viewModel.handlePriceChange(desc: priceChangeDesc)
+                                } label : {
+                                    HStack {
+                                        Text("Price Change")
+                                        
+                                        Image(systemName: "arrow.up")
+                                            .rotationEffect(Angle(degrees: priceChangeDesc ? 0 : 180))
+                                    }
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundStyle(viewModel.sortByPriceChange ?  Color.accentColor : Color.secondary)
                                     
-                                    Image(systemName: "arrow.up")
-                                        .rotationEffect(Angle(degrees: priceChangeDesc ? 0 : 180))
                                 }
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(viewModel.sortByPriceChange ?  Color.accentColor : Color.secondary)
                                 
-                            }
-                            
-                            Rectangle()
-                                .frame(width: 1)
-                                .foregroundStyle(Color.accentColor)
-                            
-                            Button {
+                                Rectangle()
+                                    .frame(width: 1, height: 15)
+                                    .foregroundStyle(Color.accentColor)
+                                
+                                Button {
                                     viewModel.restSorting()
-                            } label : {
+                                } label : {
                                     Text("Reset")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.accentColor)
-                                
+                                        .font(.subheadline)
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(Color.accentColor)
+                                    
+                                }
+                                .disabled(!(viewModel.sortByPriceChange || viewModel.sortByPrice))
                             }
-                            .disabled(!(viewModel.sortByPriceChange || viewModel.sortByPrice))
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .background {
+                                Capsule()
+                                    .fill(Color(.vrWhiteBlack))
+                            }
+                            .padding()
                         }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 20)
-                        .background {
-                            Capsule()
-                                .fill(Color(.vrWhiteBlack))
-                        }
-                        .padding()
                     }
                 }
             }
