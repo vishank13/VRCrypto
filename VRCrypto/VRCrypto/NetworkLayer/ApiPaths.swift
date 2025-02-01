@@ -9,7 +9,8 @@ import Foundation
 
 enum ApiPaths {
 
-    case coinsMarket
+    case coinsList
+    case globalMarket
 }
 
 extension ApiPaths {
@@ -20,20 +21,24 @@ extension ApiPaths {
     
     private var path: String {
         switch self {
-        case .coinsMarket:
+        case .coinsList:
             "/api/v3/coins/markets"
+        case .globalMarket:
+            "/api/v3/global"
         }
     }
     
     private var queryItems: [String: String]? {
         switch self {
-        case .coinsMarket:
+        case .coinsList:
             return ["vs_currency":"INR",
                     "order":"market_cap_desc",
                     "per_page":"250",
                     "sparkline":"true",
                     "price_change_percentage":"24h",
                     "precision":"2"]
+        default:
+            return nil
         }
     }
     

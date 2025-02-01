@@ -5,7 +5,7 @@
 //  Created by Vishank Raghav on 30/01/25.
 //
 
-import Foundation
+import SwiftUI
 
 struct CoinListDM: Identifiable {
     var id: String?
@@ -76,5 +76,31 @@ extension CoinListDM {
     
     var smallImage: String {
         image?.replacingOccurrences(of: "/large/", with: "/small/") ?? ""
+    }
+}
+
+extension CoinListDM: VRDoubleLineDataProtocol {
+    var title: String {
+        name ?? "-"
+    }
+    
+    var titleRightValue: String {
+        currentPrice?.toCurrency ?? "-"
+    }
+    
+    var caption: String {
+        symbol ?? "-"
+    }
+    
+    var captionRightValue: String {
+        let priceChange24HStr = priceChange24H?.toCurrency ?? "-"
+        
+        let priceChangePercentage24HStr = priceChangePercentage24H?.toPercentage ?? "-"
+        
+        return "\(priceChange24HStr) (\(priceChangePercentage24HStr))"
+    }
+    
+    var captionRightValueColor: Color {
+        priceChangePercentage24H ?? 0 >= 0 ? Color(.vrGreen) : Color(.vrRed)
     }
 }

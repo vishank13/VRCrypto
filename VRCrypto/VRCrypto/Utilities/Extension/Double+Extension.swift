@@ -38,4 +38,8 @@ extension Double {
         let nsNumber = NSNumber(value: self / 100)
         return percentageFormatter.string(from: nsNumber) ?? "-"
     }
+    
+    var toCompactName: String {
+        return self.formatted(.number.notation(.compactName))
+    }
 }

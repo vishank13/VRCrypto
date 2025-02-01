@@ -10,7 +10,7 @@ import Foundation
 struct CoinListRequest: BaseRequestProtocol {
     
     var url: URL? {
-        ApiPaths.coinsMarket.url
+        ApiPaths.coinsList.url
     }
     
 }
