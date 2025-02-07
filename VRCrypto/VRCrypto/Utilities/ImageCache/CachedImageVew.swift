@@ -1,6 +1,6 @@
 //
-//  CachedImageVew.swift
-//  tmdb
+//  CachedImageView.swift
+//  VRCrypto
 //
 //  Created by Vishank Raghav on 27/11/23.
 //
@@ -8,12 +8,36 @@
 import SwiftUI
 import Observation
 
-struct CachedImageVew: View {
-    var imageLoader: ImageLoader
-    var onSuccess: (()->Void)?
+/// A SwiftUI view that loads and caches an image asynchronously from a URL.
+///
+/// This view attempts to load an image from the given URL using an `ImageLoader`.
+/// If the image is successfully loaded, it is displayed as a resizable `Image`.
+/// If loading fails, a placeholder system image (`photo`) is shown.
+/// While loading, a `ProgressView` is displayed.
+///
+/// - Parameters:
+///   - url: The URL string of the image to load.
+///   - onSuccess: An optional closure that gets executed when the image successfully loads (or fails).
+///
+/// ## Usage:
+/// ```swift
+/// CachedImageView(url: "https://example.com/image.jpg")
+/// ```
+struct CachedImageView: View {
     
+    /// The image loader responsible for fetching and caching the image.
+    var imageLoader: ImageLoader
+    
+    /// Closure executed when the image successfully loads or fails.
+    var onSuccess: (() -> Void)?
+    
+    /// Initializes a `CachedImageView` with a URL string.
+    ///
+    /// - Parameters:
+    ///   - url: The URL of the image to load.
+    ///   - onSuccess: A closure that is called when the image load operation completes.
     init(url: String,
-         onSuccess: (()->Void)? = nil) {
+         onSuccess: (() -> Void)? = nil) {
         imageLoader = ImageLoader(url: url)
         self.onSuccess = onSuccess
     }
@@ -25,88 +49,14 @@ struct CachedImageVew: View {
                 .onAppear {
                     self.onSuccess?()
                 }
-        } else {
-            if imageLoader.imageFetchFailed {
-                Image(systemName: "photo")
-                    .resizable()
-                    .onAppear {
-                        self.onSuccess?()
-                    }
-            } else {
-                ProgressView()
-            }
-        }
-    }
-}
-
-struct AsyncCachedImage<Content: View>: View {
-    var imageLoader: ImageLoader
-    let content: (AsyncImagePhase)->Content
-    
-    init(url: String,
-         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content) {
-        imageLoader = ImageLoader(url: url)
-        self.content = content
-    }
-    
-    var body: some View {
-        if let image = imageLoader.image {
-            let imageView = Image(uiImage: image)
-            content(.success(imageView))
-        } else {
-            if imageLoader.imageFetchFailed {
-                content(.failure(AsyncCachedImageError.failed))
-            } else {
-                content(.empty)
-            }
-        }
-    }
-}
-
-@Observable class ImageLoader {
-    var image: UIImage?
-    var imageFetchFailed: Bool = false
-    
-    private var url: String
-    private var task: URLSessionDataTask?
-    
-    init(url: String) {
-        self.url = url
-        loadImage()
-    }
-    
-    private func loadImage() {
-        if let cachedImage = ImageCache.shared.get(forKey: url) {
-            print("From Cache!!!!!!")
-            self.image = cachedImage
-            return
-        }
-        
-        guard let url = URL(string: url) else {
-            self.imageFetchFailed = true
-            return
-        }
-        
-        task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                self.imageFetchFailed = true
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data) {
-                    self.image = image
-                    print("From Server!!!!!! \(url)")
-                    ImageCache.shared.set(image, forKey: self.url)
-                } else {
-                    self.imageFetchFailed = true
+        } else if imageLoader.imageFetchFailed {
+            Image(systemName: "photo")
+                .resizable()
+                .onAppear {
+                    self.onSuccess?()
                 }
-            }
+        } else {
+            ProgressView()
         }
-        task?.resume()
     }
-}
-
-enum AsyncCachedImageError: Error {
-    case failed
 }
