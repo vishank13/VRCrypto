@@ -7,6 +7,21 @@
 
 import Foundation
 
+/// Enum representing different API endpoints for the CoinGecko API.
+///
+/// `ApiPaths` helps in constructing URLs dynamically for various API requests.
+/// It supports different endpoints and handles query parameters efficiently.
+///
+/// ## Example Usage:
+/// ```swift
+/// if let url = ApiPaths.coinsList.url {
+///     print("Coins List API URL: \(url)")
+/// }
+/// ```
+///
+/// ## Supported Endpoints:
+/// - `coinsList`: Fetches market data for coins.
+/// - `globalMarket`: Fetches global market data.
 enum ApiPaths {
 
     case coinsList
@@ -15,49 +30,49 @@ enum ApiPaths {
 
 extension ApiPaths {
     
+    /// The API base host.
     private var host: String {
         "api.coingecko.com"
     }
     
+    /// The endpoint path for each API request.
     private var path: String {
         switch self {
         case .coinsList:
-            "/api/v3/coins/markets"
+            return "/api/v3/coins/markets"
         case .globalMarket:
-            "/api/v3/global"
+            return "/api/v3/global"
         }
     }
     
+    /// Query parameters required for specific API requests.
     private var queryItems: [String: String]? {
         switch self {
         case .coinsList:
-            return ["vs_currency":"INR",
-                    "order":"market_cap_desc",
-                    "per_page":"250",
-                    "sparkline":"true",
-                    "price_change_percentage":"24h",
-                    "precision":"2"]
+            return [
+                "vs_currency": "INR",
+                "order": "market_cap_desc",
+                "per_page": "250",
+                "sparkline": "true",
+                "price_change_percentage": "24h",
+                "precision": "2"
+            ]
         default:
             return nil
         }
     }
     
+    /// Constructs and returns the complete API URL.
     var url: URL? {
-        var urlComp = URLComponents()
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = self.host
+        urlComponents.path = self.path
         
-        urlComp.scheme = "https"
-        urlComp.host = self.host
-        urlComp.path = self.path
-        
-        var reqQueryItems = [URLQueryItem]()
-        
-        let _ = queryItems?.compactMap { item in
-            reqQueryItems.append(URLQueryItem(name: item.key,
-                                              value: item.value))
+        if let queryItems = queryItems {
+            urlComponents.queryItems = queryItems.map { URLQueryItem(name: $0.key, value: $0.value) }
         }
         
-        urlComp.queryItems = reqQueryItems
-        
-        return urlComp.url
+        return urlComponents.url
     }
 }
