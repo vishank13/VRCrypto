@@ -42,7 +42,7 @@ class NetworkManager {
     /// Default HTTP request headers.
     private let headers: [String: String] = [
         "accept": "application/json",
-        "x-cg-demo-api-key": "CG-mZ4i8Ph6dRDC5ruJNbvQu5"
+        "x-cg-demo-api-key": "CG-mZ4i8Ph6dRDC5ruJNbvQu5sU"
     ]
     
     /// Private initializer to enforce the singleton pattern.

@@ -11,114 +11,171 @@ import Combine
 @Observable
 class HomeViewModel: VRViewModel {
     
-    var globalMarket: GlobalMarketDM?
-    var coinListDM: [CoinListDM] = []
-    var tempCoinListDM: [CoinListDM] = []
-    
-    var searchStr: String = ""
-    var sortByPriceChange: Bool = false
-    var sortByPrice: Bool = false
-    
+    // MARK: - Properties
+    private var model: HomeModel
     private var cancellables = Set<AnyCancellable>()
     
-    override init() {
+    @ObservationIgnored
+    lazy var navBarDep: NavigationBarConfig = {
+        .init(title: "VR Crypto",
+              titleDisplayMode: .large,
+              leadingSystemImage: "arrow.clockwise",
+              leadingAction: { [weak self] in
+            self?.fetchData()
+        },
+              trailingSystemImage: "info.circle",
+              trailingAction: { [weak self] in
+            self?.model.showInfoSheet.toggle()
+        })
+    }()
+    
+    // MARK: - Initialization
+    init(model: HomeModel = HomeModel()) {
+        self.model = model
         super.init()
-        fetchData()
+        self.cancellables = cancellables
+        self.fetchData()
     }
     
     deinit {
-        let _ = cancellables.compactMap({$0.cancel()})
+        cancellables.forEach { $0.cancel() }
     }
     
+    // MARK: - Data Fetching
     func fetchData() {
-        fetchCoinList()
-        fetchGlobalMarket()
+        let dispatchGroup = DispatchGroup()
+        
+        self.loaderAppearance(true)
+        
+        dispatchGroup.enter()
+        fetchCoinList {
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        fetchGlobalMarket {
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.loaderAppearance(false)
+        }
     }
     
-    func fetchCoinList() {
-//        let coinListRes = Bundle.main.decode([CoinListResponse].self,
-//                                      from: "CoinList.json")
-//        coinListDM = coinListRes?.compactMap(CoinListDM.init) ?? []
-//        tempCoinListDM = coinListDM
-        self.loaderAppearance(true)
-//        NetworkManager.shared.makeRequest(req: CoinListRequest()) { [weak self] (response: [CoinListResponse]) in
-//            self?.loaderAppearance(false)
-//            self?.coinListDM = response.compactMap(CoinListDM.init)
-//        }
+    private func fetchCoinList(completion: @escaping () -> Void) {
+        //        let coinListRes = Bundle.main.decode([CoinListResponse].self,
+        //                                             from: "CoinList.json")
+        //        coinListDM = coinListRes?.compactMap(CoinListDM.init) ?? []
+        //        tempCoinListDM = coinListDM
+        
+        //        NetworkManager.shared.makeRequest(req: CoinListRequest()) { [weak self] (response: [CoinListResponse]) in
+        //            self?.coinListDM = response.compactMap(CoinListDM.init)
+        //        }
         
         NetworkManager.shared.getData(req: CoinListRequest())
-            .sink { [weak self] completion in
-                self?.loaderAppearance(false)
-                switch completion {
+            .sink { completionStatus in
+                switch completionStatus {
                 case .failure(let err):
-                    print("Error is \(err.localizedDescription)")
+                    print("Coin List API Error: \(err.localizedDescription)")
                 case .finished:
-                    print("Finished")
+                    print("Coin List API Finished")
                 }
+                completion()
             } receiveValue: { [weak self] (response: [CoinListResponse]) in
-                self?.coinListDM = response.compactMap(CoinListDM.init)
-                self?.tempCoinListDM = response.compactMap(CoinListDM.init)
-            }.store(in: &cancellables)
+                self?.model.coinListDM = response.compactMap(CoinListDM.init)
+                self?.model.tempCoinListDM = self?.model.coinListDM ?? []
+            }
+            .store(in: &cancellables)
     }
     
-    func fetchGlobalMarket() {
-        self.loaderAppearance(true)
+    private func fetchGlobalMarket(completion: @escaping () -> Void) {
         NetworkManager.shared.getData(req: GlobalMarketRequest())
-            .sink {  [weak self] completion in
-                self?.loaderAppearance(false)
-                switch completion {
+            .sink { completionStatus in
+                switch completionStatus {
                 case .failure(let err):
-                    print("Error is \(err.localizedDescription)")
+                    print("Global Market API Error: \(err.localizedDescription)")
                 case .finished:
-                    print("Finished")
+                    print("Global Market API Finished")
                 }
+                completion()
             } receiveValue: { [weak self] (response: GlobalMarketResponse) in
-                self?.globalMarket = .init(response: response.data)
-            }.store(in: &cancellables)
-        
+                self?.model.globalMarket = .init(response: response.data)
+            }
+            .store(in: &cancellables)
     }
     
+    // MARK: - Search & Sorting
     func handleSearch() {
-        if searchStr.isEmpty {
-            tempCoinListDM = coinListDM
+        if model.searchStr.isEmpty {
+            model.tempCoinListDM = model.coinListDM
             return
         }
         
-        tempCoinListDM = coinListDM.filter { item in
-            return item.name?.lowercased().contains(searchStr.lowercased()) ?? false ||
-            item.symbol?.lowercased().contains(searchStr.lowercased()) ?? false ||
-            item.id?.lowercased().contains(searchStr.lowercased()) ?? false
+        let lowercasedSearch = model.searchStr.lowercased()
+        
+        model.tempCoinListDM = model.coinListDM.filter { item in
+            item.name?.lowercased().contains(lowercasedSearch) ?? false ||
+            item.symbol?.lowercased().contains(lowercasedSearch) ?? false ||
+            item.id?.lowercased().contains(lowercasedSearch) ?? false
         }
     }
     
     func handlePriceChange(desc: Bool) {
-        tempCoinListDM = coinListDM.sorted(by: {
-            if desc {
-                return $0.priceChange24H ?? 0 > $1.priceChange24H ?? 0
-            } else {
-                return $0.priceChange24H ?? 0 < $1.priceChange24H ?? 0
-            }
-        })
-        sortByPriceChange = true
-        sortByPrice = false
+        model.tempCoinListDM = model.coinListDM.sorted {
+            let lhs = $0.priceChange24H ?? 0
+            let rhs = $1.priceChange24H ?? 0
+            return desc ? lhs > rhs : lhs < rhs
+        }
+        model.sortByPriceChange = true
+        model.sortByPrice = false
     }
     
     func handlePrice(desc: Bool) {
-        tempCoinListDM = coinListDM.sorted(by: {
-            if desc {
-                return $0.currentPrice ?? 0 > $1.currentPrice ?? 0
-            } else {
-                return $0.currentPrice ?? 0 < $1.currentPrice ?? 0
-            }
-        })
-        
-        sortByPriceChange = false
-        sortByPrice = true
+        model.tempCoinListDM = model.coinListDM.sorted {
+            let lhs = $0.currentPrice ?? 0
+            let rhs = $1.currentPrice ?? 0
+            return desc ? lhs > rhs : lhs < rhs
+        }
+        model.sortByPriceChange = false
+        model.sortByPrice = true
     }
     
     func restSorting() {
-        tempCoinListDM = coinListDM
-        sortByPriceChange = false
-        sortByPrice = false
+        model.tempCoinListDM = model.coinListDM
+        model.sortByPriceChange = false
+        model.sortByPrice = false
+    }
+}
+
+extension HomeViewModel {
+    
+    var globalMarket: GlobalMarketDM? {
+        get { model.globalMarket }
+    }
+    
+    var coinListDM: [CoinListDM] {
+        get { model.coinListDM }
+    }
+    
+    var tempCoinListDM: [CoinListDM] {
+        get { model.tempCoinListDM }
+    }
+    
+    var showInfoSheet: Bool {
+        get { model.showInfoSheet }
+        set { model.showInfoSheet = newValue }
+    }
+    
+    var searchStr: String {
+        get { model.searchStr }
+        set { model.searchStr = newValue }
+    }
+    
+    var sortByPriceChange: Bool {
+        get { model.sortByPriceChange }
+    }
+    
+    var sortByPrice: Bool {
+        get { model.sortByPrice }
     }
 }
