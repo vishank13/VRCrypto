@@ -42,10 +42,8 @@ struct SheetTitleModifier: ViewModifier {
     func body(content: Content) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             // Title section
-            Text(title)
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundStyle(Color.accentColor)
+            VRText(title,
+                   style: .title)
                 .padding(.horizontal)
             
             // Separator line

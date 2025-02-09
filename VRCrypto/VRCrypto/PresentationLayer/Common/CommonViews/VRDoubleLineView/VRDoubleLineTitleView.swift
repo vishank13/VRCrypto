@@ -1,5 +1,5 @@
 //
-//  VRDoubleLineRowView.swift
+//  VRDoubleLineTitleView.swift
 //  VRCrypto
 //
 //  Created by Vishank Raghav on 01/02/25.
@@ -9,7 +9,7 @@ import SwiftUI
 
 /// A SwiftUI view that displays a two-line row with titles and captions.
 ///
-/// `VRDoubleLineRowView` presents textual data in a structured format where:
+/// `VRDoubleLineTitleView` presents textual data in a structured format where:
 /// - The first row contains a **title** on the left and a **right-aligned value**.
 /// - The second row contains a **caption** on the left and a **right-aligned value** with a configurable color.
 ///
@@ -25,13 +25,13 @@ import SwiftUI
 ///
 /// ## Example Usage
 /// ```swift
-/// VRDoubleLineRowView(dataRow: sampleData)
+/// VRDoubleLineTitleView(dataRow: sampleData)
 /// ```
 ///
 /// ## Parameters
 /// - `dataRow`: A model conforming to `VRDoubleLineDataProtocol`, providing the necessary text values and styling.
 ///
-struct VRDoubleLineRowView: View {
+struct VRDoubleLineTitleView: View {
     
     /// The data model containing the necessary text values and styling.
     var dataRow: VRDoubleLineDataProtocol
@@ -43,31 +43,33 @@ struct VRDoubleLineRowView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Text(dataRow.title)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Text(dataRow.titleRightValue)
-                    .font(.headline)
-            }
-            
-            HStack {
-                Text(dataRow.caption)
-                    .font(.callout)
-                
-                Spacer()
-                
-                Text(dataRow.captionRightValue)
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(dataRow.captionRightValueColor)
-            }
+        VStack(alignment: .leading, spacing: 2) {
+            constructFirstLineView()
+            constructSecondLineView()
         }
         .lineLimit(1)
-        .padding(.vertical, 4)
+    }
+    
+    fileprivate func constructFirstLineView() -> some View {
+        HStack {
+            VRText(dataRow.title,
+                   style: .headline)
+            
+            VRText(dataRow.titleRightValue,
+                   style: .subheadline,
+                   alignment: .trailing)
+        }
+    }
+    
+    fileprivate func constructSecondLineView() -> some View {
+        HStack {
+            VRText(dataRow.caption,
+                   style: .body)
+            
+            VRText(dataRow.captionRightValue,
+                   style: .subheadline,
+                   alignment: .trailing,
+                   foreground: dataRow.captionRightValueColor)
+        }
     }
 }

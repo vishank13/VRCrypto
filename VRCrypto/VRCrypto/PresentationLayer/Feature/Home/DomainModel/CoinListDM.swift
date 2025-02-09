@@ -7,7 +7,18 @@
 
 import SwiftUI
 
-struct CoinListDM: Identifiable {
+struct CoinListDM: Identifiable, Hashable {
+    
+    static func == (lhs: CoinListDM, rhs: CoinListDM) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(symbol)
+        hasher.combine(name)
+    }
+    
     var id: String?
     var symbol: String?
     var name: String?

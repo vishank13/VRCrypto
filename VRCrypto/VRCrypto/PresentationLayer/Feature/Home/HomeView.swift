@@ -33,6 +33,12 @@ struct HomeView: View {
         .sheet(isPresented: $viewModel.showInfoSheet) {
             InfoSheetView
         }
+        .navigationDestination(for: CoinListDM.self) { coin in
+            let model = DetailsModel(coinId: coin.id)
+            let viewModel = DetailsViewModel(model: model)
+            
+           DetailsView(viewModel: viewModel)
+        }
     }
 }
 
@@ -47,32 +53,22 @@ extension HomeView {
     @ViewBuilder
     private var globalMarketInfo: some View {
         if viewModel.searchStr.isEmpty {
-            HStack {
-                getInfoView("Total Market Cap",
-                            viewModel.globalMarket?.totalMarketCapINR)
+            HStack(spacing: 0) {
+                VRGridItemView(title: "Total Market Cap",
+                               value: viewModel.globalMarket?.totalMarketCapINR ?? "-",
+                               alignment: .center)
                 
-                getInfoView("Total Volume",
-                            viewModel.globalMarket?.totalVolumeINR)
+                VRGridItemView(title: "Total Volume",
+                               value: viewModel.globalMarket?.totalVolumeINR ?? "-",
+                               alignment: .center)
                 
-                getInfoView("Market Cap %",
-                            viewModel.globalMarket?.marketCapPercentageBTC)
+                VRGridItemView(title: "Market Cap %",
+                               value: viewModel.globalMarket?.marketCapPercentageBTC ?? "-",
+                               alignment: .center)
             }
             .frame(maxWidth: .infinity)
             .padding(.horizontal)
         }
-    }
-    
-    private func getInfoView(_ title: String,
-                             _ value: String?) -> some View {
-        VStack {
-            Text(title)
-                .font(.subheadline)
-                .foregroundStyle(Color.accentColor)
-            
-            Text(value ?? "")
-                .font(.headline)
-        }
-        .frame(maxWidth: .infinity)
     }
     
     private var searchTextFieldView: some View {
@@ -103,10 +99,12 @@ extension HomeView {
     private var coinListView: some View {
         List(viewModel.tempCoinListDM) { coin in
             HStack {
-                CachedImageVew(url: coin.smallImage)
-                    .frame(width: 50, height: 50)
-                
-                VRDoubleLineRowView(dataRow: coin)
+                NavigationLink(value: coin) {
+                    CachedImageView(url: coin.smallImage)
+                        .frame(width: 50, height: 50)
+                    
+                    VRDoubleLineTitleView(dataRow: coin)
+                }
             }
             .listRowSeparator(.hidden)
             .listRowBackground(Color(.vrBackground))

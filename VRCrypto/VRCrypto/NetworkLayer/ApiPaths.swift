@@ -26,6 +26,7 @@ enum ApiPaths {
 
     case coinsList
     case globalMarket
+    case coinData(String)
 }
 
 extension ApiPaths {
@@ -42,6 +43,8 @@ extension ApiPaths {
             return "/api/v3/coins/markets"
         case .globalMarket:
             return "/api/v3/global"
+        case .coinData(let coinId):
+            return "/api/v3/coins/\(coinId)"
         }
     }
     
@@ -50,12 +53,21 @@ extension ApiPaths {
         switch self {
         case .coinsList:
             return [
-                "vs_currency": "INR",
+                "vs_currency": "usd",
                 "order": "market_cap_desc",
                 "per_page": "250",
                 "sparkline": "true",
                 "price_change_percentage": "24h",
                 "precision": "2"
+            ]
+        case .coinData(_):
+            return [
+                "localization":"false",
+                "tickers":"false",
+                "market_data":"true",
+                "community_data":"false",
+                "developer_data":"false",
+                "sparkline":"true"
             ]
         default:
             return nil

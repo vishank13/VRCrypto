@@ -5,7 +5,6 @@
 //  Created by Vishank Raghav on 01/02/25.
 //
 
-
 struct GlobalMarketDM {
     var activeCryptocurrencies: Int?
     var upcomingIcos: Int?
@@ -39,20 +38,20 @@ extension GlobalMarketDM {
     
     var totalMarketCapINR: String {
         
-        guard let inrValue = totalMarketCap?["inr"] else {
+        guard let inrValue = totalMarketCap?["usd"] else {
             return "-"
         }
                 
-        return "₹\(inrValue.toCompactName)"
+        return "$\(inrValue.toCompactName)"
     }
     
     var totalVolumeINR: String {
         
-        guard let inrValue = totalVolume?["inr"] else {
+        guard let inrValue = totalVolume?["usd"] else {
             return "-"
         }
                 
-        return "₹\(inrValue.toCompactName)"
+        return "$\(inrValue.toCompactName)"
     }
     
     var marketCapPercentageBTC: String {

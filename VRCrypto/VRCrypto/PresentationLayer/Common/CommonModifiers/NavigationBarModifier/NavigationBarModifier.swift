@@ -32,6 +32,7 @@ struct NavigationBarModifier: ViewModifier {
         content
             .navigationTitle(config.title)
             .navigationBarTitleDisplayMode(config.titleDisplayMode)
+            .navigationBarBackButtonHidden()
             .toolbar {
                 // MARK: - Leading Toolbar Item
                 if config.leadingItemVisible {

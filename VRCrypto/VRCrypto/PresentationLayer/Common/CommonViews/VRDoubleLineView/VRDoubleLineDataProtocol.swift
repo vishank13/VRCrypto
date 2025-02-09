@@ -22,7 +22,7 @@ import SwiftUI
 /// +----------------------------------+
 /// ```
 ///
-/// This protocol is intended for use in UI components, such as `VRDoubleLineRowView`,
+/// This protocol is intended for use in UI components, such as `VRDoubleLineTitleView`,
 /// where structured text-based data needs to be displayed.
 ///
 /// ## Example Usage:
