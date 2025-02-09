@@ -12,5 +12,6 @@ enum VRTextStyle {
     case headline
     case subheadline
     case body
+    case callout
     case caption
 }

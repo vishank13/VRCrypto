@@ -27,6 +27,7 @@ struct DetailsView: View {
             }
         }
         .customNavigationBar(viewModel.navBarDep)
+        .toolbar(.hidden, for: .tabBar)
         .onAppear {
             viewModel.fetchCoinData()
         }

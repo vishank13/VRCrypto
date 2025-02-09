@@ -37,31 +37,31 @@ class DetailsViewModel: VRViewModel {
     }
     
     func fetchCoinData() {
-        self.loaderAppearance(true)
-        guard let coinDataRes = Bundle.main.decode(CoinDataResponse.self,
-                                                   from: "CoinData.json") else {
-            return
-        }
-        
-        model.coinData = CoinDataDM(response: coinDataRes)
-        self.loaderAppearance(false)
-//        guard let id = model.coinId else {
+//        self.loaderAppearance(true)
+//        guard let coinDataRes = Bundle.main.decode(CoinDataResponse.self,
+//                                                   from: "CoinData.json") else {
 //            return
 //        }
-//        self.loaderAppearance(true)
-//        NetworkManager.shared.getData(req: CoinDataRequest(coinID: id))
-//            .sink { completionStatus in
-//                switch completionStatus {
-//                case .failure(let err):
-//                    print("Coin Data API Error: \(err.localizedDescription)")
-//                case .finished:
-//                    print("Coin Data API Finished")
-//                }
-//            } receiveValue: { [weak self] (response: CoinDataResponse) in
-//                self?.model.coinData = response
-//                self?.loaderAppearance(false)
-//            }
-//            .store(in: &cancellables)
+//        
+//        model.coinData = CoinDataDM(response: coinDataRes)
+//        self.loaderAppearance(false)
+        guard let id = model.coinId else {
+            return
+        }
+        self.loaderAppearance(true)
+        NetworkManager.shared.getData(req: CoinDataRequest(coinID: id))
+            .sink { completionStatus in
+                switch completionStatus {
+                case .failure(let err):
+                    print("Coin Data API Error: \(err.localizedDescription)")
+                case .finished:
+                    print("Coin Data API Finished")
+                }
+            } receiveValue: { [weak self] (response: CoinDataResponse) in
+                self?.model.coinData = CoinDataDM(response: response)
+                self?.loaderAppearance(false)
+            }
+            .store(in: &cancellables)
     }
 }
 

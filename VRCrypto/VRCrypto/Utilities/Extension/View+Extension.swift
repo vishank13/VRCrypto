@@ -42,6 +42,10 @@ extension View {
         case .body:
             self.font(.body)
             
+        case .callout:
+            self.font(.callout)
+                .fontWeight(.light)
+            
         case .caption:
             self.font(.caption)
             
