@@ -19,4 +19,37 @@ extension View {
     func customNavigationBar(_ config: NavigationBarConfig) -> some View {
         self.modifier(NavigationBarModifier(config: config))
     }
+    
+    @ViewBuilder
+    func applyStyle(_ style: VRTextStyle) -> some View {
+        switch style {
+        case .navTitle:
+            self.font(.largeTitle)
+                .fontWeight(.heavy)
+            
+        case .title:
+            self.font(.title)
+                .fontWeight(.bold)
+            
+        case .headline:
+            self.font(.headline)
+                .fontWeight(.semibold)
+            
+        case .subheadline:
+            self.font(.subheadline)
+                .fontWeight(.semibold)
+            
+        case .body:
+            self.font(.body)
+            
+        case .callout:
+            self.font(.callout)
+                .fontWeight(.light)
+            
+        case .caption:
+            self.font(.caption)
+            
+            
+        }
+    }
 }

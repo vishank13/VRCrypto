@@ -160,7 +160,13 @@ class NetworkManager {
             
             URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { (data, response) -> Data in
-                    return try self.validateResponse(response, data)
+                    let validatedData =  try self.validateResponse(response, data)
+                    
+                    if let httpResponse = response as? HTTPURLResponse {
+                        self.logResponse(url: url, response: httpResponse, data: validatedData)
+                    }
+                    
+                    return validatedData
                 }
                 .decode(type: T.self, decoder: JSONDecoder())
                 .receive(on: DispatchQueue.main)

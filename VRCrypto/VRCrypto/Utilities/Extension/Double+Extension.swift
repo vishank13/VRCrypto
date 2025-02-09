@@ -15,8 +15,8 @@ extension Double {
         let nf = NumberFormatter()
         nf.usesGroupingSeparator = true
         nf.numberStyle = .currency
-        nf.currencyCode = "INR"
-        nf.currencySymbol = "₹"
+        nf.currencyCode = "USD"
+        nf.currencySymbol = "$"
         nf.maximumFractionDigits = 2
         nf.minimumFractionDigits = 2 // Ensures consistency in decimal places
         return nf

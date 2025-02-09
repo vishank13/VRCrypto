@@ -19,9 +19,9 @@ struct VRCryptoApp: App {
                     }
                 }
                 
-                Tab("Portfolio", systemImage: "suitcase") {
+                Tab("About Me", systemImage: "person.circle") {
                     NavigationStack {
-                        Text("Portfolio")
+                        AboutMeView()
                     }
                 }
             }
