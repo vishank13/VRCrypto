@@ -42,15 +42,18 @@ struct DetailsView: View {
 
 extension DetailsView {
     
+    @ViewBuilder
     private var headerView: some View {
-        HStack {
-            VRText(viewModel.coinData?.name ?? "--",
-                   style: .navTitle)
-            
-            CachedImageView(url: viewModel.coinData?.image?.small ?? "")
-                .frame(width: 50, height: 50)
+        if let name = viewModel.coinData?.name {
+            HStack {
+                VRText(name,
+                       style: .navTitle)
+                
+                CachedImageView(url: viewModel.coinData?.image?.small ?? "")
+                    .frame(width: 50, height: 50)
+            }
+            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity)
     }
     
     @ViewBuilder
