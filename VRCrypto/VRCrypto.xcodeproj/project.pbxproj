@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		425BA0002D722D0A00B00D69 /* VRScrollableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425B9FFF2D722D0A00B00D69 /* VRScrollableTabBar.swift */; };
+		425BA0042D722DA200B00D69 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA0032D722D9C00B00D69 /* SettingsView.swift */; };
 		425BBCF02D4BC1430050D79E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425BBCE92D4BC1430050D79E /* Preview Assets.xcassets */; };
 		425BBCF12D4BC1430050D79E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 425BBCEB2D4BC1430050D79E /* Assets.xcassets */; };
 		425BBCF32D4BC1430050D79E /* VRStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BBCE52D4BC1430050D79E /* VRStack.swift */; };
@@ -60,6 +62,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		425B9FFF2D722D0A00B00D69 /* VRScrollableTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRScrollableTabBar.swift; sourceTree = "<group>"; };
+		425BA0032D722D9C00B00D69 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		425BBCC92D4BB63F0050D79E /* VRCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VRCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		425BBCE52D4BC1430050D79E /* VRStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRStack.swift; sourceTree = "<group>"; };
 		425BBCE92D4BC1430050D79E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -125,6 +129,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		425BA0012D722D2900B00D69 /* VRScrollableTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				425B9FFF2D722D0A00B00D69 /* VRScrollableTabBar.swift */,
+			);
+			path = VRScrollableTabBar;
+			sourceTree = "<group>";
+		};
+		425BA0022D722D8100B00D69 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				425BA0032D722D9C00B00D69 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		425BBCC02D4BB63F0050D79E = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +172,7 @@
 		425BBCE72D4BC1430050D79E /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				425BA0012D722D2900B00D69 /* VRScrollableTabBar */,
 				4282B8962D58B92E00384E9F /* VRGridItemView */,
 				4282B88F2D58AA8A00384E9F /* VRText */,
 				4282B88B2D57716C00384E9F /* VRCollapsibleTextView */,
@@ -362,6 +383,7 @@
 		4282B8732D5727B700384E9F /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				425BA0022D722D8100B00D69 /* Settings */,
 				4282B8972D58C58200384E9F /* AboutMe */,
 				4282B8682D5674F500384E9F /* Details */,
 				425BBCF62D4BC1670050D79E /* Home */,
@@ -515,6 +537,7 @@
 				425BBD0A2D4BD2730050D79E /* CachedImageVew.swift in Sources */,
 				4282B8912D58AA9900384E9F /* VRTextStyle.swift in Sources */,
 				4282B8952D58B86F00384E9F /* VRGridItemView.swift in Sources */,
+				425BA0042D722DA200B00D69 /* SettingsView.swift in Sources */,
 				425BBD102D4BE2E10050D79E /* RoiDM.swift in Sources */,
 				4282B87A2D57328900384E9F /* String+Extension.swift in Sources */,
 				425BBD052D4BC8500050D79E /* Bundle+Extension.swift in Sources */,
@@ -540,6 +563,7 @@
 				4282B8782D572DC900384E9F /* CoinDataResponse.swift in Sources */,
 				425BBD232D4DFBFA0050D79E /* SheetTitleModifier.swift in Sources */,
 				4282B86E2D56751800384E9F /* DetailsModel.swift in Sources */,
+				425BA0002D722D0A00B00D69 /* VRScrollableTabBar.swift in Sources */,
 				425BBD212D4DF3280050D79E /* VRDoubleLineDataProtocol.swift in Sources */,
 				4282B8762D572B7B00384E9F /* CoinDataRequest.swift in Sources */,
 				4282B88D2D577DFD00384E9F /* DateHelper.swift in Sources */,

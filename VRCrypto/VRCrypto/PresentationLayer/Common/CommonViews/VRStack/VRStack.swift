@@ -50,7 +50,7 @@ struct VRStack<Content: View>: View {
     /// - Parameters:
     ///   - showLoader: A `Binding<Bool>` to toggle the loader visibility.
     ///   - content: A closure returning the view to be displayed inside the stack.
-    init(showLoader: Binding<Bool>,
+    init(showLoader: Binding<Bool> = .constant(false),
          @ViewBuilder content: () -> Content) {
         self._showLoader = showLoader
         self.content = content()
